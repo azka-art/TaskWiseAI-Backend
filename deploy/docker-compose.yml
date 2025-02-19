@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ..
+    container_name: taskwise-backend
+    restart: always
+    env_file:
+      - ../.env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+      - ai
+
+  database:
+    image: postgres:17  # ✅ Updated to PostgreSQL 17
+    container_name: taskwise-db
+    restart: always
+    ports:
+      - "5433:5432"  # ✅ Exposing port 5433 since you were using it
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: examplepassword
+      POSTGRES_DB: taskwise
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  ai:
+    build: ../ai_python
+    container_name: taskwise-ai
+    restart: always
+    ports:
+      - "5000:5000"
+
+volumes:
+  postgres_data:
+
