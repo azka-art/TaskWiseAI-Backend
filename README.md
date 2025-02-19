@@ -214,15 +214,6 @@ docker-compose up --build
 
 This project is licensed under the MIT License.
 
-👨‍💻 Contributing
-------------------
-
-Want to contribute? Follow these steps:
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   git checkout -b feature-branch  git commit -m "Your changes"  git push origin feature-branch   `
-
-Then, open a pull request!
-
 🙌 Acknowledgments
 ------------------
 
