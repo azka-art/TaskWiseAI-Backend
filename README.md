@@ -1,6 +1,6 @@
-# TaskWise Backend 🚀
+# TaskWiseAI Backend 🚀
 
-TaskWise is a task management system with AI-powered task prioritization. This backend is built using Golang, Gin, PostgreSQL, JWT authentication, and AI integration via TensorFlow Lite.
+TaskWiseAI is a task management system with AI-powered task prioritization. This backend is built using Golang, Gin, PostgreSQL, JWT authentication, and AI integration via TensorFlow Lite.
 
 ## 📌 Features
 
