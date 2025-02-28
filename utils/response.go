@@ -4,19 +4,41 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// APIResponse digunakan untuk membentuk format respons JSON yang konsisten
+// Response represents a standardized API response
+type Response struct {
+	Success bool        `json:"success"`
+	Message string      `json:"message"`
+	Data    interface{} `json:"data,omitempty"`
+	Error   string      `json:"error,omitempty"`
+}
+
+// APIResponse returns a success response with data
 func APIResponse(c *gin.Context, status int, message string, data interface{}) {
-	c.JSON(status, gin.H{
-		"status":  status,
-		"message": message,
-		"data":    data,
+	c.JSON(status, Response{
+		Success: true,
+		Message: message,
+		Data:    data,
 	})
 }
 
-// ErrorResponse digunakan untuk mengembalikan pesan error
+// ErrorResponse returns an error response
 func ErrorResponse(c *gin.Context, status int, message string) {
-	c.JSON(status, gin.H{
-		"status": status,
-		"error":  message,
+	c.JSON(status, Response{
+		Success: false,
+		Error:   message,
+	})
+}
+
+// NotFoundResponse returns a standardized not found response
+func NotFoundResponse(c *gin.Context, message string) {
+	ErrorResponse(c, 404, message)
+}
+
+// ValidationErrorResponse returns a standardized validation error response
+func ValidationErrorResponse(c *gin.Context, message string, errors interface{}) {
+	c.JSON(400, Response{
+		Success: false,
+		Error:   message,
+		Data:    errors, // Include validation error details
 	})
 }

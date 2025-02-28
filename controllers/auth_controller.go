@@ -37,13 +37,22 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
-	token, err := services.LoginUser(credentials)
+	token, user, err := services.LoginUser(credentials)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token})
+	// Return token and user data (excluding password)
+	c.JSON(http.StatusOK, gin.H{
+		"token": token,
+		"user": gin.H{
+			"id":       user.ID,
+			"username": user.Username,
+			"email":    user.Email,
+			"role":     user.Role,
+		},
+	})
 }
 
 // GetUsers retrieves all users (only accessible with JWT)
